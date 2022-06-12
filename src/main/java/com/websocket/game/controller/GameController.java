@@ -1,6 +1,7 @@
 package com.websocket.game.controller;
 
 import com.websocket.game.controller.dto.ConnectRequest;
+import com.websocket.game.controller.dto.GameId;
 import com.websocket.game.exception.InvalidGameException;
 import com.websocket.game.exception.InvalidParamException;
 import com.websocket.game.exception.NotFoundException;
@@ -8,14 +9,12 @@ import com.websocket.game.model.Game;
 import com.websocket.game.model.GamePlay;
 import com.websocket.game.model.Player;
 import com.websocket.game.service.GameService;
+import com.websocket.game.storage.GameStorage;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
@@ -50,5 +49,11 @@ public class GameController {
         Game game = gameService.gamePlay(request);
         simpMessagingTemplate.convertAndSend("/topic/game-progress/" + game.getGameId(), game);
         return ResponseEntity.ok(game);
+    }
+
+    @PostMapping
+    public ResponseEntity<Game> getGame(@RequestBody GameId uuidId){
+        log.info("fetch game: {}", uuidId.getId());
+        return ResponseEntity.ok(GameStorage.getInstance().getGames().get(uuidId.getId()));
     }
 }

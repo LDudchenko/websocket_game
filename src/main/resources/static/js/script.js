@@ -1,9 +1,10 @@
 var turns = [["#", "#", "#"], ["#", "#", "#"], ["#", "#", "#"]];
 var turn = "";
-var gameOn = false;
+var pTurn = 'X';
 
 function playerTurn(turn, id) {
-    if (gameOn) {
+    setTurn(gameId);
+    if (pTurn == playerType) {
         var spotTaken = $("#" + id).text();
         if (spotTaken === "#") {
             makeAMove(playerType, id.split("_")[0], id.split("_")[1]);
@@ -24,7 +25,6 @@ function makeAMove(type, xCoordinate, yCoordinate) {
             "gameId": gameId
         }),
         success: function (data) {
-            gameOn = false;
             displayResponse(data);
         },
         error: function (error) {
@@ -49,7 +49,6 @@ function displayResponse(data) {
     if (data.winner != null) {
         alert("Winner is " + data.winner);
     }
-    gameOn = true;
 }
 
 $(".tic").click(function () {
@@ -65,3 +64,30 @@ function reset() {
 $("#reset").click(function () {
     reset();
 });
+
+function setTurn(gameId) {
+    $.ajax({
+        url: url + "/game",
+        type: 'POST',
+        dataType: "json",
+        async: false,
+        contentType: "application/json",
+        data: JSON.stringify({
+            "id": gameId
+        }),
+        success: function (data) {
+            pTurn = (data.lastStepType == "X") ? 'O' : 'X';
+            console.log(pTurn)
+            displayResponse(data);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    })
+}
+
+function copyTextToClipboard(copyText) {
+    if (navigator && navigator.clipboard && navigator.clipboard.writeText)
+        return navigator.clipboard.writeText(copyText);
+    return Promise.reject('The Clipboard API is not available.');
+};
