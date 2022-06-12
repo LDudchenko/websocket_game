@@ -36,7 +36,7 @@ function create_game() {
                 playerType = 'X';
                 reset();
                 connectToSocket(gameId);
-                alert("Your created a game. Game id is: " + data.gameId);
+                alert("You created a game. Game id is: " + data.gameId);
                 gameOn = true;
             },
             error: function (error) {
@@ -79,8 +79,8 @@ function connectToSpecificGame() {
     if (login == null || login === '') {
         alert("Please enter login");
     } else {
-        let gameId = document.getElementById("game_id").value;
-        if (gameId == null || gameId === '') {
+        let gameIdFromHtml = document.getElementById("game_id").value;
+        if (gameIdFromHtml == null || gameIdFromHtml === '') {
             alert("Please enter game id");
         }
         $.ajax({
@@ -92,12 +92,13 @@ function connectToSpecificGame() {
                 "player": {
                     "login": login
                 },
-                "gameId": gameId
+                "gameId": gameIdFromHtml
             }),
             success: function (data) {
                 gameId = data.gameId;
                 playerType = 'O';
                 reset();
+                console.log(gameId);
                 connectToSocket(gameId);
                 alert("Congrats you're playing with: " + data.player1.login);
             },
