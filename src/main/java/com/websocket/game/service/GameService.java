@@ -78,6 +78,8 @@ public class GameService {
             game.setWinner(TicToe.O);
         }
 
+        game.setLastStepType(gamePlay.getType());
+
         GameStorage.getInstance().setGame(game);
         return game;
     }
@@ -106,4 +108,5 @@ public class GameService {
         }
         return false;
     }
+
 }

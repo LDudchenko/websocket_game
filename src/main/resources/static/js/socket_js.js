@@ -35,8 +35,9 @@ function create_game() {
                 gameId = data.gameId;
                 playerType = 'X';
                 reset();
+                copyTextToClipboard(gameId)
                 connectToSocket(gameId);
-                alert("You created a game. Game id is: " + data.gameId);
+                alert("You created a game. Game id is: " + data.gameId+"\n Game id is already copied to your clipboard!\nSimply use it!");
                 gameOn = true;
             },
             error: function (error) {
