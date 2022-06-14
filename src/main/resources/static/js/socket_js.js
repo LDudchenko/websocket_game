@@ -27,6 +27,7 @@ function create_game() {
             url: url + "/game/start",
             type: 'POST',
             dataType: "json",
+            async: false,
             contentType: "application/json",
             data: JSON.stringify({
                 "login": login
@@ -37,7 +38,7 @@ function create_game() {
                 reset();
                 copyTextToClipboard(gameId)
                 connectToSocket(gameId);
-                alert("You created a game. Game id is: " + data.gameId+"\n Game id is already copied to your clipboard!\nSimply use it!");
+                alert("You created a game. Game id is: " + data.gameId+"\nGame id is already copied to your clipboard!\nSimply use it!");
                 gameOn = true;
             },
             error: function (error) {
@@ -57,6 +58,7 @@ function connectToRandom() {
             url: url + "/game/connect/random",
             type: 'POST',
             dataType: "json",
+            async: false,
             contentType: "application/json",
             data: JSON.stringify({
                 "login": login
@@ -88,6 +90,7 @@ function connectToSpecificGame() {
             url: url + "/game/connect",
             type: 'POST',
             dataType: "json",
+            async: false,
             contentType: "application/json",
             data: JSON.stringify({
                 "player": {

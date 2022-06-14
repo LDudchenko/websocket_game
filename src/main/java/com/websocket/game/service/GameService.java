@@ -12,6 +12,8 @@ import com.websocket.game.storage.GameStorage;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.OptionalInt;
 import java.util.UUID;
 
 import static com.websocket.game.model.GameStatus.*;
@@ -20,6 +22,9 @@ import static com.websocket.game.model.GameStatus.*;
 @AllArgsConstructor
 public class GameService {
 
+    private final PointCounterService pointCounterService;
+    private final PlayerService playerService;
+
     public Game createGame(Player player) {
         Game game = new Game();
         game.setBoard(new int[3][3]);
@@ -27,6 +32,7 @@ public class GameService {
         game.setPlayer1(player);
         game.setStatus(NEW);
         GameStorage.getInstance().setGame(game);
+        this.playerService.saveUser(player);
         return game;
     }
 
@@ -43,6 +49,7 @@ public class GameService {
         game.setPlayer2(player2);
         game.setStatus(IN_PROGRESS);
         GameStorage.getInstance().setGame(game);
+        this.playerService.saveUser(player2);
         return game;
     }
 
@@ -53,6 +60,7 @@ public class GameService {
         game.setPlayer2(player2);
         game.setStatus(IN_PROGRESS);
         GameStorage.getInstance().setGame(game);
+        this.playerService.saveUser(player2);
         return game;
     }
 
@@ -74,8 +82,11 @@ public class GameService {
 
         if (xWinner) {
             game.setWinner(TicToe.X);
+            this.pointCounterService.finalCount(game);
         } else if (oWinner) {
             game.setWinner(TicToe.O);
+        } else if (checkDeadHeat(board)){
+            game.setDeadHeat(true);
         }
 
         game.setLastStepType(gamePlay.getType());
@@ -84,15 +95,14 @@ public class GameService {
         return game;
     }
 
+    private boolean checkDeadHeat(int[][] board) {
+        int[] ints = this.convert2DArrayTo1D(board);
+        OptionalInt first = Arrays.stream(ints).filter(x -> x == 0).findFirst();
+        return !first.isPresent();
+    }
+
     private Boolean checkWinner(int[][] board, TicToe ticToe) {
-        int[] boardArray = new int[9];
-        int counterIndex = 0;
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++) {
-                boardArray[counterIndex] = board[i][j];
-                counterIndex++;
-            }
-        }
+        int[] boardArray = this.convert2DArrayTo1D(board);
 
         int[][] winCombinations = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {0, 3, 6}, {1, 4, 7}, {2, 5, 8}, {0, 4, 8}, {2, 4, 6}};
         for (int i = 0; i < winCombinations.length; i++) {
@@ -107,6 +117,18 @@ public class GameService {
             }
         }
         return false;
+    }
+
+    private int[] convert2DArrayTo1D(int[][] board) {
+        int[] boardArray = new int[9];
+        int counterIndex = 0;
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                boardArray[counterIndex] = board[i][j];
+                counterIndex++;
+            }
+        }
+        return boardArray;
     }
 
 }

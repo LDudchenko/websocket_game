@@ -16,7 +16,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
-<body>
 <div class="text-center" id="box">
     <header>
         <h1>Play Tic Tac Toe</h1>
@@ -38,13 +37,15 @@
         <li class="tic" id="2_1"></li>
         <li class="tic" id="2_2"></li>
     </ul>
+    <button onclick="ratingTable()">View rating table</button>
     <div class="clearfix"></div>
     <footer>
         <span>You are playing with <span id="oponentLogin"></span></span>
     </footer>
 </div>
+
+<div id="table-wrapper" class="table-wrapper"></div>
 <script src="js/script.js"></script>
 <script src="js/socket_js.js"></script>
-</body>
 </body>
 </html>
