@@ -12,5 +12,6 @@ public class Game {
     private int[][] board;
     private TicToe winner;
     private TicToe lastStepType;
+    private Boolean deadHeat;
 
 }
