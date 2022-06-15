@@ -151,7 +151,7 @@ function generateTable(data) {
         var cell = row.insertCell(-1);
         cell.innerHTML = data[i].lossQuantity;
         var cell = row.insertCell(-1);
-        cell.innerHTML = data[i].pointQuantity;
+        cell.innerHTML = data[i].gameQuantity;
     }
 
     var dvTable = document.getElementById("table-wrapper");
