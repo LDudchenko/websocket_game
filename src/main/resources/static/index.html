@@ -17,35 +17,63 @@
 </head>
 <body>
 <div class="text-center" id="box">
+    <div class="inline">
+        <div class="block left">
     <header>
         <h1>Play Tic Tac Toe</h1>
     </header>
-    <input id="login" placeholder="Place a login here">
-    <button onclick="create_game()">Create a new game</button>
-    <button onclick="connectToRandom()">Connect to random game</button>
-    <input id="game_id" placeholder="Paste game id">
-    <button onclick="connectToSpecificGame()">Connect by game id</button>
+    <div class="col-3">
+        <input class="effect-2" type="text" placeholder="Enter your username" id="login">
+        <span class="focus-border"></span>
+    </div>
+    <div class="inline">
+        <button class="button-48 create" onclick="create_game()" role="button"><span class="text">Create new</span></button>
+        <button class="button-48 random" onclick="connectToRandom()" role="button"><span class="text">Connect to random</span></button>
+    </div>
+    <div class="col-3">
+        <input class="effect-2" type="text" placeholder="Paste game id" id="game_id">
+        <span class="focus-border"></span>
+    </div>
+    <button class="button-48" onclick="connectToSpecificGame()" role="button"><span class="text">Connect by game id</span></button>
     <div id="message"></div>
+        </div>
+<div class="block right">
     <ul id="gameBoard">
-        <li class="tic" id="0_0"></li>
-        <li class="tic" id="0_1"></li>
-        <li class="tic" id="0_2"></li>
-        <li class="tic" id="1_0"></li>
-        <li class="tic" id="1_1"></li>
-        <li class="tic" id="1_2"></li>
-        <li class="tic" id="2_0"></li>
-        <li class="tic" id="2_1"></li>
-        <li class="tic" id="2_2"></li>
+        <div class="block">
+            <div class="inline max">
+                <li class="tic" id="0_0"></li>
+                <li class="tic" id="0_1"></li>
+                <li class="tic" id="0_2"></li>
+            </div>
+            <div class="inline max">
+                <li class="tic" id="1_0"></li>
+                <li class="tic" id="1_1"></li>
+                <li class="tic" id="1_2"></li>
+            </div>
+            <div class="inline max">
+                <li class="tic" id="2_0"></li>
+                <li class="tic" id="2_1"></li>
+                <li class="tic" id="2_2"></li>
+            </div>
+        </div>
     </ul>
-    <button onclick="ratingTable()">View rating table</button>
-    <div class="clearfix"></div>
-    <footer>
-        <span>You are playing with <span id="oponentLogin"></span></span>
-    </footer>
 </div>
+
+
+</div>
+    <div class="block">
+        <button class="button-48 view" onclick="ratingTable()" role="button"><span class="text">View rating table</span></button>
+        <div class="clearfix"></div>
+        <footer>
+            <span>You are playing with <span id="oponentLogin"></span></span>
+        </footer>
+    </div>
+    </div>
 
 <div id="table-wrapper" class="table-wrapper"></div>
 <script src="js/script.js"></script>
 <script src="js/socket_js.js"></script>
 </body>
 </html>
+
+
