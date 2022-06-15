@@ -14,6 +14,8 @@ function connectToSocket(gameId) {
             let data = JSON.parse(response.body);
             console.log(data);
             displayResponse(data);
+            var oponentField = document.getElementById("oponentLogin");
+            oponentField.innerHTML = 'Oponents: '+ data.player1.login + ' and ' + data.player2.login;
         })
     })
 }
@@ -40,6 +42,8 @@ function create_game() {
                 connectToSocket(gameId);
                 alert("You created a game. Game id is: " + data.gameId+"\nGame id is already copied to your clipboard!\nSimply use it!");
                 gameOn = true;
+                var signField = document.getElementById("sign");
+                signField.innerHTML = 'Your sign is \'X\'';
             },
             error: function (error) {
                 console.log(error);
@@ -69,6 +73,8 @@ function connectToRandom() {
                 reset();
                 connectToSocket(gameId);
                 alert("Congrats you're playing with: " + data.player1.login);
+                var signField = document.getElementById("sign");
+                signField.innerHTML = 'Your sign is \'0\'';
             },
             error: function (error) {
                 console.log(error);
@@ -105,6 +111,8 @@ function connectToSpecificGame() {
                 console.log(gameId);
                 connectToSocket(gameId);
                 alert("Congrats you're playing with: " + data.player1.login);
+                var signField = document.getElementById("sign");
+                signField.innerHTML = 'Your sign is \'O\'';
             },
             error: function (error) {
                 console.log(error);

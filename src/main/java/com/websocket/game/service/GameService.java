@@ -85,8 +85,10 @@ public class GameService {
             this.pointCounterService.finalCount(game);
         } else if (oWinner) {
             game.setWinner(TicToe.O);
+            this.pointCounterService.finalCount(game);
         } else if (checkDeadHeat(board)){
             game.setDeadHeat(true);
+            this.pointCounterService.finalCount(game);
         }
 
         game.setLastStepType(gamePlay.getType());

@@ -48,6 +48,7 @@ public class PointCounterService {
             this.increaseLossQuantity(ratingRecord2);
         } else {
             this.increaseVictoryQuantity(ratingRecord2);
+            this.increasePointQuantity(ratingRecord2, Point.TEN.getValue());
             this.increaseLossQuantity(ratingRecord1);
         }
     }
