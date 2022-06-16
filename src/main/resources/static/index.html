@@ -19,59 +19,64 @@
 <body>
 <a id="button"></a>
 <div class="text-center" id="box">
+    <span id="winnerX" class="winnerX" style="display:none;">The winner is X</span>
+    <span id="winnerY" class="winnerY" style="display:none;">The winner is O</span>
+    <span id="draw"  class="draw" style="display:none;">It is draw! There is no loosers:)</span>
     <div class="inline">
         <div class="block left">
-    <header>
-        <h1>Play Tic Tac Toe</h1>
-    </header>
-    <div class="col-3">
-        <input class="effect-2" type="text" placeholder="Enter your username" id="login">
-        <span class="focus-border"></span>
-    </div>
-    <div class="inline">
-        <button class="button-48 create" onclick="create_game()" role="button"><span class="text">Create new</span></button>
-        <button class="button-48 random" onclick="connectToRandom()" role="button"><span class="text">Connect to random</span></button>
-    </div>
-    <div class="col-3">
-        <input class="effect-2" type="text" placeholder="Paste game id" id="game_id">
-        <span class="focus-border"></span>
-    </div>
-    <button class="button-48" onclick="connectToSpecificGame()" role="button"><span class="text">Connect by game id</span></button>
-    <div id="message"></div>
+            <header>
+                <h1>Play Tic Tac Toe</h1>
+            </header>
+            <div class="col-3">
+                <input class="effect-2" type="text" placeholder="Enter your username" id="login">
+                <span class="focus-border"></span>
+            </div>
+            <div class="inline">
+                <button class="button-48 create" onclick="create_game()" role="button"><span
+                        class="text">Create new</span></button>
+                <button class="button-48 random" onclick="connectToRandom()" role="button"><span class="text">Connect to random</span>
+                </button>
+            </div>
+            <div class="col-3">
+                <input class="effect-2" type="text" placeholder="Paste game id" id="game_id">
+                <span class="focus-border"></span>
+            </div>
+            <button class="button-48" onclick="connectToSpecificGame()" role="button"><span class="text">Connect by game id</span>
+            </button>
+            <div id="message"></div>
         </div>
-<div class="block right">
-    <ul id="gameBoard">
-        <div class="block">
-            <div class="inline max">
-                <li class="tic" id="0_0"></li>
-                <li class="tic" id="0_1"></li>
-                <li class="tic" id="0_2"></li>
-            </div>
-            <div class="inline max">
-                <li class="tic" id="1_0"></li>
-                <li class="tic" id="1_1"></li>
-                <li class="tic" id="1_2"></li>
-            </div>
-            <div class="inline max">
-                <li class="tic" id="2_0"></li>
-                <li class="tic" id="2_1"></li>
-                <li class="tic" id="2_2"></li>
-            </div>
+        <div class="block right">
+            <ul id="gameBoard">
+                <div class="block">
+                    <div class="inline max">
+                        <li class="tic" id="0_0"></li>
+                        <li class="tic" id="0_1"></li>
+                        <li class="tic" id="0_2"></li>
+                    </div>
+                    <div class="inline max">
+                        <li class="tic" id="1_0"></li>
+                        <li class="tic" id="1_1"></li>
+                        <li class="tic" id="1_2"></li>
+                    </div>
+                    <div class="inline max">
+                        <li class="tic" id="2_0"></li>
+                        <li class="tic" id="2_1"></li>
+                        <li class="tic" id="2_2"></li>
+                    </div>
+                </div>
+            </ul>
         </div>
-    </ul>
-</div>
-
-
-</div>
+    </div>
     <div class="block">
-        <button class="button-48 view" onclick="ratingTable()" role="button"><span class="text">View rating table</span></button>
+        <button class="button-48 view" onclick="ratingTable()" role="button"><span class="text">View rating table</span>
+        </button>
         <div class="clearfix"></div>
         <footer>
             <span id="sign"></span></br>
             <span id="oponentLogin"></span>
         </footer>
     </div>
-    </div>
+</div>
 
 <div id="table-wrapper" class="table-wrapper"></div>
 <script src="js/back_to_top_btn.js"></script>

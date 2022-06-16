@@ -47,11 +47,21 @@ function displayResponse(data) {
             $("#" + id).text(turns[i][j]);
         }
     }
+    var winnerX = document.getElementById("winnerX");
+    var winnerY = document.getElementById("winnerY");
+    var draw = document.getElementById("draw");
     if (data.winner != null) {
-        alert("Winner is " + data.winner);
+//        gameResult.innerHTML = 'The winner is: '+ data.winner;
+//        alert("Winner is " + data.winner);
+        if (data.winner === "X") {
+            winnerX.style.cssText='display: block; border: #666 1px solid; color: #666; font-size: 16px; padding: 5px 20px; color: white; font-weight: bold;';
+        } else if (data.winner === "O") {
+            winnerY.style.cssText='display: block; border: #666 1px solid; color: #666; font-size: 16px; padding: 5px 20px; color: white; font-weight: bold;';
+        }
     } else if(data.deadHeat) {
-        alert("It is draw! There is no loosers:)");
+        draw.style.cssText='display: block; border: #666 1px solid; color: #666; font-size: 16px; padding: 5px 20px; color: white; font-weight: bold;';
     }
+
 }
 
 $(".tic").click(function () {

@@ -4,7 +4,6 @@ let gameId;
 let playerType;
 
 function connectToSocket(gameId) {
-
     console.log("connecting to the game");
     let socket = new SockJS(url + "/gameplay");
     stompClient = Stomp.over(socket);
@@ -35,6 +34,8 @@ function create_game() {
                 "login": login
             }),
             success: function (data) {
+                var idInput = document.getElementById("game_id");
+                idInput.value = '';
                 gameId = data.gameId;
                 playerType = 'X';
                 reset();

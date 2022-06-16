@@ -1,7 +1,7 @@
 body {
     background: #666;
     color: #666;
-
+    font-size: 16px;
 }
 
 h1 {
@@ -275,39 +275,39 @@ input[type="text"] {
 }
 
 #button {
-  display: inline-block;
-  width: 70px;
-  height: 70px;
-  text-align: center;
-  border-radius: 4px;
-  position: fixed;
-  bottom: 40px;
-  right: 40px;
-  transition: background-color .3s,
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    text-align: center;
+    border-radius: 4px;
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    transition: background-color .3s,
     opacity .5s, visibility .5s;
-  opacity: 0;
-  visibility: hidden;
-  z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
 }
 #button::after {
-  content: url("https://www.svgrepo.com/show/40074/up-arrow.svg");
-  font-family: FontAwesome;
-  font-weight: normal;
-  font-style: normal;
-  font-size: 2em;
-  line-height: 50px;
-  color: #fff;
+    content: url("https://www.svgrepo.com/show/40074/up-arrow.svg");
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 2em;
+    line-height: 50px;
+    color: #fff;
 }
 #button:hover {
-  cursor: pointer;
-  background-color: #333;
+    cursor: pointer;
+    background-color: #333;
 }
 #button:active {
-  background-color: #555;
+    background-color: #555;
 }
 #button.show {
-  opacity: 1;
-  visibility: visible;
+    opacity: 1;
+    visibility: visible;
 }
 
 
